@@ -1,0 +1,86 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Microsoft/azure-pipelines-task-lib/master/tasks.schema.json",
+    "id": "467002ad-ebc7-47af-abf3-9565b6cfe27e",
+    "name": "LogErrorReader",
+    "friendlyName": "Log Error Reader",
+    "description": "An extension that fetches failed build logs from a specified pipeline build",
+    "helpMarkDown": "",
+    "category": "Utility",
+    "author": "Lander Marien",
+    "version": {
+        "Major": 0,
+        "Minor": 1,
+        "Patch": 0
+    },
+    "inputs": [
+        {
+            "name": "awsPublicKey",
+            "type": "string",
+            "label": "AWS public key",
+            "required" : true,
+            "helpMarkDown": "Your public AWS acces key"
+        },
+
+        {
+            "name": "awsSecretKey",
+            "type": "string",
+            "label": "AWS secret key",
+            "required" : true,
+            "helpMarkDown": "Your secret AWS acces key"
+        },
+
+        {
+            "name": "provider",
+            "type": "connectedService:AWS",
+            "label": "AWS service connection",
+            "required" : false,
+            "helpMarkDown": "Your AWS service connection to fetch acces keys"
+        },
+
+        {
+            "name": "tableName",
+            "type": "string",
+            "label": "DynamoDB Table name",
+            "required": false,
+            "helpMarkDown": "Your DynamoDB Table name"
+        },
+
+        {
+            "name": "organizationName",
+            "type": "string",
+            "label": "Organization Name",
+            "defaultValue": "",
+            "required": true,
+            "helpMarkDown": "The name of your azure organization"
+        },
+        {
+            "name": "projectName",
+            "type": "string",
+            "label": "Project Name",
+            "defaultValue": "",
+            "required": true,
+            "helpMarkDown": "The name of your azure project"
+        },
+        {
+            "name": "patToken",
+            "type": "string",
+            "label": "PAT Token",
+            "defaultValue": "",
+            "required": true,
+            "helpMarkDown": "Your personal PAT token. Highly recommended to use a secure variable"
+        },
+        {
+            "name": "buildNumber",
+            "type": "string",
+            "label": "Build Number",
+            "defaultValue": "",
+            "required": false,
+            "helpMarkDown": "The build number you want the logs for. If left blank the most recent build logs will be fetched"
+        }
+    ],
+    "execution": {
+        "Node10": {
+            "target": "index.js"
+        }
+    }
+}
